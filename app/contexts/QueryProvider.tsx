@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 import { Query } from "../types/query";
 
 export const QueryContext = createContext<Query | null>(null);

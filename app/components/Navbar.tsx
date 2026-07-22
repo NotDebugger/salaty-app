@@ -1,33 +1,35 @@
-"use client";
-import { useState } from "react";
-import { useQuery } from "../hooks/useQuery";
-import { useLocationData } from "../hooks/useLocationData";
+// COMPONENTS ==========
+import PrayerMethods from "./PrayerMethods";
+import LocationAndLanguageButtons from "./LocationAndLanguageButtons";
+import MethodsDropdown from "./MethodsDropdown";
+// Image ======
+import Image from "next/image";
 
 export default function Navbar() {
-  const { setQuery } = useQuery();
-  const [lan, setLan] = useState<"ar" | "en">("ar");
-
-  console.log(useLocationData(lan));
   return (
-    <div className="h-20 text-white bg-[#070b1a] border-b border-white/10">
-      <div>
+    <div className="h-16 w-2/3 mt-5 mx-auto rounded-full text-primary bg-[#7a8fa8]/5 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] shadow-white/10 flex px-16 justify-between items-center">
+      <div className="flex flex-col">
         <span>10 محرم 1448 هـ</span>
-        <span>الخميس</span>
+        <span className="self-end text-[#7a8fa8]">الخميس</span>
       </div>
-      <div>
-        <button
-          className="w-5 h-5"
-          onClick={() => (lan === "ar" ? setLan("en") : setLan("ar"))}
-        >
-          en
-        </button>
+      <div className="flex items-center gap-2">
+        <LocationAndLanguageButtons />
+        <MethodsDropdown>
+          <PrayerMethods />
+        </MethodsDropdown>
       </div>
-      <div>
-        <input type="text" onChange={(e) => setQuery(e.target.value)} />
-      </div>
-      <div>
-        <span>صلاتى</span>
-        <span>Salaty</span>
+      <div className="flex gap-3">
+        <div className="flex flex-col">
+          <span>صلاتى</span>
+          <span className="text-[#7a8fa8]">SALATY</span>
+        </div>
+        <Image
+          className="self-center saturate-150"
+          src="/moon5.png"
+          alt="Moon Icon"
+          width={30}
+          height={20}
+        />
       </div>
     </div>
   );
